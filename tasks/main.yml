@@ -1,0 +1,4 @@
+- include_tasks: install.yml
+  with_items: "{{ pkg_list }}"
+  loop_control:
+    loop_var: pkg_item
