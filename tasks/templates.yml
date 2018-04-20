@@ -1,0 +1,7 @@
+- name: Deploying template {{ pkg_template_item }}
+  template:
+    src: "{{ pkg_template_item.name }}.j2"
+    dest: "/{{ pkg_template_item.name }}"
+    mode: "{{ pkg_template_item.mode | default(0640) }}"
+    owner: "{{ pkg_template_item.owner | default('root') }}"
+    group: "{{ pkg_template_item.group | default('root') }}"

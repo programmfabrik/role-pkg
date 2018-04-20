@@ -1,0 +1,7 @@
+- name: Deploying file {{ pkg_file_item }}
+  copy:
+    src: "{{ pkg_file_item.name }}"
+    dest: "/{{ pkg_file_item.name }}"
+    mode: "{{ pkg_file_item | default(0640) }}"
+    owner: "{{ pkg_file_item.owner | default('root') }}"
+    group: "{{ pkg_file_item.group | default('root') }}"

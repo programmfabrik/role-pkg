@@ -1,0 +1,7 @@
+- name: Configuring "{{ pkg_item }}"
+  debconf:
+    name: "{{ pkg_item.name }}"
+    question: "{{ pkg_debconf_item.question }}"
+    vtype: "{{ pkg_debconf_item.vtype }}"
+    value: "{{ pkg_debconf_item.value }}"
+  changed_when: no

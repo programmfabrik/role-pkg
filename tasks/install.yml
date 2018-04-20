@@ -1,0 +1,20 @@
+- include_tasks: configure.yml
+  with_items: "{{ pkg_item.debconf | default([]) }}"
+  loop_control:
+    loop_var: pkg_debconf_item
+
+- include_tasks: files.yml
+  with_items: "{{ pkg_item.files | default([]) }}"
+  loop_control:
+    loop_var: pkg_file_item
+
+- include_tasks: templates.yml
+  with_items: "{{ pkg_item.templates | default([]) }}"
+  loop_control:
+    loop_var: pkg_template_item
+
+- name: Installing {{ pkg_item }}
+  apt:
+    pkg: "{{ pkg_item.name }}"
+    update_cache: "{{ pkg_item.update_cache | default('no') }}"
+    install_recommends: "{{ pkg_item.install_recommends | default('no') }}"
